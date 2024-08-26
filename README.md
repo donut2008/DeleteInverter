@@ -8,6 +8,6 @@ I was attempting to get the fingerprint sensor working on my Galaxy A30s which w
 Yes.
 
 ## Can I make a feature request?
-Sure! You can create a new issue tagged "feature-request" or, if you have already implemented the feature, create a pull request. I'll review the PR before merging it.
+Sure! You can create a new issue tagged "feature request" or, if you have already implemented the feature, create a pull request. I'll review the PR before merging it.
 
 # Enjoy!
