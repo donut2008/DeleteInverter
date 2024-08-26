@@ -1,0 +1,115 @@
+﻿<Page
+	x:Class="DeleteInverter.MainPage"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:local="using:DeleteInverter"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	mc:Ignorable="d"
+	Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+	<Grid Margin="16">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
+		<TextBlock Style="{StaticResource HeaderTextBlockStyle}" VerticalAlignment="Center" Grid.Row="0">
+				DeleteInverter
+			</TextBlock>
+			<StackPanel Orientation="Horizontal" Grid.Row="1"
+						Margin="0,8,0,4">
+				<TextBlock VerticalAlignment="Center"
+						   Margin="0,0,4,0">
+					Browse for folder:
+				</TextBlock>
+				<TextBox x:Name="DirPath"
+						 IsReadOnly="True"
+						 Margin="0,0,4,0"
+						 PlaceholderText="No folder selected."
+						 VerticalAlignment="Center"
+						 IsHitTestVisible="False"
+						 IsTabStop="False"/>
+				<Button x:Name="BrowseFolder"
+						Click="BrowseFolder_Click"
+						VerticalAlignment="Center">
+					Browse for folder
+				</Button>
+			</StackPanel>
+			<StackPanel Orientation="Horizontal" Grid.Row="2"
+						Margin="0,4">
+				<TextBlock VerticalAlignment="Center"
+						   Margin="0,0,4,0">
+					Select file list:
+				</TextBlock>
+				<TextBox x:Name="ListPath"
+						 IsReadOnly="True"
+						 Margin="0,0,4,0"
+						 PlaceholderText="No file list."
+						 VerticalAlignment="Center"
+						 IsHitTestVisible="False"
+						 IsTabStop="False"/>
+				<Button x:Name="BrowseFileList"
+						Click="BrowseFileList_Click"
+						VerticalAlignment="Center">
+					Browse for file list
+				</Button>
+			</StackPanel>
+			<Button Margin="0,4" Grid.Row="3"
+					Click="CheckBeforeDelete"
+					Style="{StaticResource AccentButtonStyle}">
+				Delete files
+			</Button>
+			<TextBlock Grid.Row="4">Progress</TextBlock>
+		<Border BorderBrush="Gray" BorderThickness="1"
+					 Margin="0,4,0,0"
+					Padding="4" Grid.Row="5">
+			<ScrollViewer HorizontalScrollBarVisibility="Disabled"
+						  VerticalScrollBarVisibility="Visible"
+						  VerticalScrollMode="Enabled"
+						  IsVerticalRailEnabled="True">
+				<TextBlock x:Name="ProgressBox"
+						HorizontalAlignment="Stretch"
+						VerticalAlignment="Stretch"
+						   ScrollViewer.VerticalScrollBarVisibility="Visible"
+						   ScrollViewer.VerticalScrollMode="Enabled"/>
+			</ScrollViewer>
+		</Border>
+		<ContentDialog x:Name="HelpDialog"
+					   Title="Help"
+					   PrimaryButtonText="OK">
+			<ContentDialog.Content>
+				<TextBlock TextWrapping="WrapWholeWords">
+					Select a folder in which to delete files using the "Browse for folder button".
+					Select a file list containing the list of files which are <Run FontWeight="Bold">NOT</Run> to be deleted.
+					An empty list works too, with the effect that the contents of the folder are deleted without the folder itself.
+					<LineBreak/>
+					The file names in the list should be separated by a | (press 'Shift' + '\' to get it on most keyboards).
+					FILE NAMES ARE CASE SENSITIVE! "myFile.txt" will NOT be recognised as "myfile.txt", "Myfile.txt", or as any other
+					combinations!
+					<LineBreak/>
+					Why? Because C# cannot check for equality without ignoring the case, for some reason. Will be implemented soon.
+				</TextBlock>
+			</ContentDialog.Content>
+		</ContentDialog>
+		<ContentDialog x:Name="DeleteAllFilesWarning"
+					   Title="DELETE ALL FILES?"
+					   PrimaryButtonClick="ConfirmAllFilesDeletion"
+					   PrimaryButtonText="CONFIRM"
+					   SecondaryButtonText="CANCEL">
+			<ContentDialog.Content>
+				<TextBlock x:Name="WarnText" TextWrapping="WrapWholeWords"/>
+			</ContentDialog.Content>
+		</ContentDialog>
+		<ContentDialog x:Name="NoFolder"
+					   Title="No folder selected."
+					   PrimaryButtonText="OK"/>
+		<Button Click="HelpClick"
+					VerticalAlignment="Top"
+					HorizontalAlignment="Right">
+			Need help?
+		</Button>
+	</Grid>
+</Page>
