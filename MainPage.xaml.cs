@@ -64,6 +64,7 @@ namespace DeleteInverter
 				ListPath.Text = file.Path;
 				IsFileListPresent = true;
 				await Task.Run(() => FileListTask());
+				ProgressBox.Text = "";
 				Print("Files to exclude:");
 				foreach (string str in ExclusionList)
 					Print(str);
@@ -83,8 +84,6 @@ namespace DeleteInverter
 				WarnText.Text = $"Are you sure you want to delete ALL files in the folder \"{folder.Path}\"? This cannot be undone!";
 				await DeleteAllFilesWarning.ShowAsync();
 			}
-			else if (IsFolderSelected && (file != null))
-				StartDeletion();
 			else if (!IsFolderSelected)
 			{
 				await NoFolder.ShowAsync();
