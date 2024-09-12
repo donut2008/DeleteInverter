@@ -1,0 +1,102 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\donut\\source\\repos\\DeleteInverter\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{42E643B5-CF11-4D3C-8B14-34FEB431AB9D}|DeleteInverter.csproj|c:\\users\\donut\\source\\repos\\deleteinverter\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{42E643B5-CF11-4D3C-8B14-34FEB431AB9D}|DeleteInverter.csproj|solutionrelative:mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{42E643B5-CF11-4D3C-8B14-34FEB431AB9D}|DeleteInverter.csproj|c:\\users\\donut\\source\\repos\\deleteinverter\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{42E643B5-CF11-4D3C-8B14-34FEB431AB9D}|DeleteInverter.csproj|solutionrelative:mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{42E643B5-CF11-4D3C-8B14-34FEB431AB9D}|DeleteInverter.csproj|c:\\users\\donut\\source\\repos\\deleteinverter\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{42E643B5-CF11-4D3C-8B14-34FEB431AB9D}|DeleteInverter.csproj|solutionrelative:app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{42E643B5-CF11-4D3C-8B14-34FEB431AB9D}|DeleteInverter.csproj|c:\\users\\donut\\source\\repos\\deleteinverter\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{42E643B5-CF11-4D3C-8B14-34FEB431AB9D}|DeleteInverter.csproj|solutionrelative:app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{42E643B5-CF11-4D3C-8B14-34FEB431AB9D}|DeleteInverter.csproj|c:\\users\\donut\\source\\repos\\deleteinverter\\designtimeresources.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{42E643B5-CF11-4D3C-8B14-34FEB431AB9D}|DeleteInverter.csproj|solutionrelative:designtimeresources.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 5,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "App.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\donut\\source\\repos\\DeleteInverter\\App.xaml.cs",
+              "RelativeDocumentMoniker": "App.xaml.cs",
+              "ToolTip": "C:\\Users\\donut\\source\\repos\\DeleteInverter\\App.xaml.cs",
+              "RelativeToolTip": "App.xaml.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAADwvw8AAAACAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-12T11:56:40.338Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "DesignTimeResources.xaml",
+              "DocumentMoniker": "C:\\Users\\donut\\source\\repos\\DeleteInverter\\DesignTimeResources.xaml",
+              "RelativeDocumentMoniker": "DesignTimeResources.xaml",
+              "ToolTip": "C:\\Users\\donut\\source\\repos\\DeleteInverter\\DesignTimeResources.xaml",
+              "RelativeToolTip": "DesignTimeResources.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-09-12T11:48:06.121Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "App.xaml",
+              "DocumentMoniker": "C:\\Users\\donut\\source\\repos\\DeleteInverter\\App.xaml",
+              "RelativeDocumentMoniker": "App.xaml",
+              "ToolTip": "C:\\Users\\donut\\source\\repos\\DeleteInverter\\App.xaml",
+              "RelativeToolTip": "App.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-09-12T11:30:36.451Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MainWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\donut\\source\\repos\\DeleteInverter\\MainWindow.xaml.cs",
+              "RelativeDocumentMoniker": "MainWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\donut\\source\\repos\\DeleteInverter\\MainWindow.xaml.cs",
+              "RelativeToolTip": "MainWindow.xaml.cs",
+              "ViewState": "AQIAAAcAAAAAAAAAAAAewBgAAAAZAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-12T07:38:56.029Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MainWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\donut\\source\\repos\\DeleteInverter\\MainWindow.xaml",
+              "RelativeDocumentMoniker": "MainWindow.xaml",
+              "ToolTip": "C:\\Users\\donut\\source\\repos\\DeleteInverter\\MainWindow.xaml \u2B24",
+              "RelativeToolTip": "MainWindow.xaml \u2B24",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-09-12T07:38:54.617Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
