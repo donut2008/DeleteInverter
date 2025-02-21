@@ -8,9 +8,9 @@
   IgnorableNamespaces="uap mp rescap">
 
   <Identity
-	Name="0b72b514-eddd-4061-b80e-04828d161df5"
+	Name="DeleteInverter"
 	Publisher="CN=donut"
-	Version="1.0.0.0" />
+	Version="1.1.0.0" />
 
   <mp:PhoneIdentity PhoneProductId="0b72b514-eddd-4061-b80e-04828d161df5" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 

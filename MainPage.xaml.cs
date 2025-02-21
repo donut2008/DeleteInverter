@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Windows.ApplicationModel.Core;
 using Windows.Storage;
 using Windows.Storage.Pickers;
 using Windows.UI.Xaml;
@@ -23,7 +24,7 @@ namespace DeleteInverter
 		private bool IsFolderSelected = false, IsFileListPresent = false;
 		private bool[] bools = { };
 
-		private string[] FileList = [], FileNameList = [], DeletionList = [], ExclusionList = [], DeletionPaths = [];
+		private string[] FileList = [], FileNameList = [], DeletionList = [], ExclusionList = [];
 
 		public MainPage()
 		{
@@ -40,13 +41,9 @@ namespace DeleteInverter
 			folderPicker.FileTypeFilter.Add("*");
 
 			folder = await folderPicker.PickSingleFolderAsync();
-			if (folder != null)
-			{
-				DirPath.Text = folder.Path;
-				IsFolderSelected = true;
-			}
-			else
-				IsFolderSelected = false;
+			IsFolderSelected = folder != null;
+
+			DirPath.Text = IsFolderSelected ? folder.Path : "";
 		}
 
 		private async void BrowseFileList_Click(object sender, RoutedEventArgs e)
@@ -57,19 +54,22 @@ namespace DeleteInverter
 			};
 			filePicker.FileTypeFilter.Add(".txt");
 
-			file = await filePicker.PickSingleFileAsync();
 
-			if (file != null)
+			file = await filePicker.PickSingleFileAsync();
+			IsFileListPresent = file != null;
+
+			if (IsFileListPresent)
 			{
+				ExclusionList = (await FileIO.ReadTextAsync(file)).Split(new[] { Environment.NewLine }, StringSplitOptions.None);
 				ListPath.Text = file.Path;
-				IsFileListPresent = true;
-				await Task.Run(() => FileListTask());
-				ProgressBox.Text = "";
+
 				Print("Files to exclude:");
 				foreach (string str in ExclusionList)
 					Print(str);
 			}
-			else IsFileListPresent = false;
+
+			if (ExclusionList.Length == 0 || ExclusionList == null)
+				await FSAccessUnauthorized.ShowAsync();
 		}
 
 		private async void HelpClick(object sender, RoutedEventArgs e)
@@ -79,7 +79,7 @@ namespace DeleteInverter
 
 		private async void CheckBeforeDelete(object sender, RoutedEventArgs e)
 		{
-			if (IsFolderSelected && (file == null))
+			if (IsFolderSelected && !IsFileListPresent)
 			{
 				WarnText.Text = $"Are you sure you want to delete ALL files in the folder \"{folder.Path}\"? This cannot be undone!";
 				await DeleteAllFilesWarning.ShowAsync();
@@ -88,6 +88,20 @@ namespace DeleteInverter
 			{
 				await NoFolder.ShowAsync();
 			}
+			else
+				StartDeletion();
+		}
+
+		private async void LaunchFSPrivacySettings(ContentDialog sender, ContentDialogButtonClickEventArgs args)
+		{
+			bool result = await Windows.System.Launcher.LaunchUriAsync(new Uri("ms-settings:privacy-broadfilesystemaccess"));
+			if (!result)
+				App.Current.Exit();
+		}
+
+		private void NoFSAccess_QuitApp(ContentDialog sender, ContentDialogButtonClickEventArgs args)
+		{
+			App.Current.Exit();
 		}
 
 		private async void StartDeletion()
@@ -96,46 +110,43 @@ namespace DeleteInverter
 			Print("Getting file list...");
 
 			DirectoryInfo dInfo = new(folder.Path);
-			FileList = Directory.GetFiles(dInfo.FullName);
-
-			bools = new bool[FileList.Length];
-			List<string> fnList = new(), delList = new();
-			int i, n;
-			foreach (string str in FileList)
+			try
 			{
-				i = str.LastIndexOf('\\');
-				fnList.Add(str.Substring(i + 1));
-			}
-			FileNameList = [.. fnList];
+				FileList = Directory.GetFiles(dInfo.FullName);
 
-			Print("Preparing list of files to delete...");
-			foreach (var str in FileNameList)
-			{
-				bool t = ExclusionList.Contains(str);
-				if (t) continue;
-				else
+				bools = new bool[FileList.Length];
+				List<string> fnList = [], delList = new();
+
+				foreach (string str in FileList)
+					fnList.Add(str.Substring(str.LastIndexOf('\\') + 1));
+
+				FileNameList = [.. fnList];
+
+				Print("Preparing list of files to delete...");
+				foreach (var str in FileNameList)
 				{
-					n = Array.IndexOf(FileNameList, str);
-					bools[n] = true;
+					if (!ExclusionList.Contains(str))
+						bools[Array.IndexOf(FileNameList, str)] = true;
 				}
-			}
-			for (i = 0; i < FileNameList.Length; i++)
-			{
-				if (bools[i])
-					delList.Add(FileList[i]);
-			}
-			DeletionList = [.. delList];
 
-			Print("Deleting files...");
-			n = 0;
-			foreach (string str in DeletionList)
-			{
-				Print($"Deleting {str}");
-				await Task.Run(() => File.Delete(@str));
-				bools[n++] = false;
-			}
+				for (int i = 0; i < FileNameList.Length; i++)
+					if (bools[i]) delList.Add(FileList[i]);
+				DeletionList = [.. delList];
 
-			Print("Delete success.");
+				Print("Deleting files...");
+				foreach (string str in DeletionList)
+				{
+					Print($"Deleting {str}");
+					await Task.Run(() => File.Delete(@str));
+					bools[Array.IndexOf(DeletionList, str)] = false;
+				}
+
+				Print("Delete success.");
+			}
+			catch (UnauthorizedAccessException)
+			{
+				await FSAccessUnauthorized.ShowAsync();
+			}
 		}
 
 		private void ConfirmAllFilesDeletion(ContentDialog sender, ContentDialogButtonClickEventArgs args)
@@ -146,13 +157,6 @@ namespace DeleteInverter
 		private void Print(string message)
 		{
 			ProgressBox.Text += $"{message}\n";
-		}
-
-		private Task FileListTask()
-		{
-			if (File.Exists(@file.Path))
-				ExclusionList = File.ReadAllText(file.Path).Split('|');
-			return Task.CompletedTask;
 		}
 	}
 }

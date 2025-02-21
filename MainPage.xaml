@@ -90,23 +90,41 @@
 					FILE NAMES ARE CASE SENSITIVE! "myFile.txt" will NOT be recognised as "myfile.txt", "Myfile.txt", or as any other
 					combinations!
 					<LineBreak/>
-					Why? Because C# cannot check for equality without ignoring the case, for some reason. Will be implemented soon.
+					Why? Because I cannot implement case-insensitive file name checking. Will be implemented soon.
 				</TextBlock>
 			</ContentDialog.Content>
 		</ContentDialog>
 		<ContentDialog x:Name="DeleteAllFilesWarning"
-					   Title="DELETE ALL FILES?"
+					   Title="Delete ALL files? This cannot be undone!"
 					   PrimaryButtonClick="ConfirmAllFilesDeletion"
-					   PrimaryButtonText="CONFIRM"
-					   SecondaryButtonText="CANCEL">
+					   PrimaryButtonText="Proceed"
+					   SecondaryButtonText="Cancel">
 			<ContentDialog.Content>
 				<TextBlock x:Name="WarnText" TextWrapping="WrapWholeWords"/>
 			</ContentDialog.Content>
 		</ContentDialog>
 		<ContentDialog x:Name="NoFolder"
 					   Title="No folder selected."
-					   PrimaryButtonText="OK"/>
-		<Button Click="HelpClick"
+					   PrimaryButtonText="OK">
+			<ContentDialog.Content>
+				<TextBlock TextWrapping="WrapWholeWords">
+					Please select a folder.
+				</TextBlock>
+			</ContentDialog.Content>
+		</ContentDialog>
+		<ContentDialog x:Name="FSAccessUnauthorized"
+					   Title="Access to files on this computer may be blocked"
+					   PrimaryButtonClick="LaunchFSPrivacySettings"
+					   PrimaryButtonText="Open Settings"
+					   SecondaryButtonClick="NoFSAccess_QuitApp"
+					   SecondaryButtonText="Quit">
+			<ContentDialog.Content>
+				<TextBlock x:Name="FSAUText" TextWrapping="WrapWholeWords">
+					Open Settings to fix?
+				</TextBlock>
+			</ContentDialog.Content>
+		</ContentDialog>
+			<Button Click="HelpClick"
 					VerticalAlignment="Top"
 					HorizontalAlignment="Right">
 			Need help?
